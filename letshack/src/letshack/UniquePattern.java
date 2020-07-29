@@ -14,29 +14,33 @@ public class UniquePattern {
         System.out.println("Enter second string: ");  
         String second = scan.nextLine(); 
         scan.close();
-        String output = findUniquePattern(first.toLowerCase(), second.toLowerCase());
+        String output = findUniquePattern(first, second);
         System.out.println(output);
 	}
 
 	public static String findUniquePattern(String first, String second) {
 		Pattern pattern = Pattern.compile("\\b[a][0-9]*\\b");
-		Matcher m1 = pattern.matcher(first);
+//		Pattern pattern = Pattern.compile("A45675");
+		Matcher m1 = pattern.matcher(first.toLowerCase());
 		ArrayList<String> unique = new ArrayList<String>();
+		
 		while(m1.find()) {
 			unique.add(m1.group());
 		}
 		if( unique.size()> 1) {
 			return null;
 		}
-		Matcher m2 = pattern.matcher(second);
+		
+		Matcher m2 = pattern.matcher(second.toLowerCase());
 		while(m2.find()) {
 			unique.add(m2.group());
 		}
 		if( unique.size()> 2) {
 			return null;
 		}
+	
 		if(unique.get(0).equals(unique.get(1))) {
-			return unique.get(0);
+			return unique.get(0).toUpperCase();
 		} else {
 			return null;
 		}
