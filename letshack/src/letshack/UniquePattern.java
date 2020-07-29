@@ -14,10 +14,11 @@ public class UniquePattern {
         System.out.println("Enter second string: ");  
         String second = scan.nextLine(); 
         scan.close();
-        findUniquePattern(first.toLowerCase(), second.toLowerCase());
+        String output = findUniquePattern(first.toLowerCase(), second.toLowerCase());
+        System.out.println(output);
 	}
 
-	public static void findUniquePattern(String first, String second) {
+	public static String findUniquePattern(String first, String second) {
 		Pattern pattern = Pattern.compile("\\b[a][0-9]*\\b");
 		Matcher m1 = pattern.matcher(first);
 		ArrayList<String> unique = new ArrayList<String>();
@@ -25,21 +26,19 @@ public class UniquePattern {
 			unique.add(m1.group());
 		}
 		if( unique.size()> 1) {
-			System.out.println("null");
-			return;
+			return null;
 		}
 		Matcher m2 = pattern.matcher(second);
 		while(m2.find()) {
 			unique.add(m2.group());
 		}
 		if( unique.size()> 2) {
-			System.out.println("null");
-			return;
+			return null;
 		}
 		if(unique.get(0).equals(unique.get(1))) {
-			System.out.println(unique.get(0));
+			return unique.get(0);
 		} else {
-			System.out.println("null");
+			return null;
 		}
 		
 	}

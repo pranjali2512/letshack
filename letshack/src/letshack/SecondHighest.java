@@ -16,15 +16,20 @@ public class SecondHighest {
             a[i] = scan.nextInt();
         }
         scan.close();
-        checkSecondHighest(a, length);
+        int output = checkSecondHighest(a, length);
+        if(output == -1) {
+        	System.out.println("Invalid");
+        } else {
+        	System.out.println("Second highest number"+ output);
+        }
 	}
 
-	public static void checkSecondHighest(int a[], int length) {
+	public static int checkSecondHighest(int a[], int length) {
 		int n1, n2, min;
 
 		if (length < 2) {
 			System.out.println("Array must have at least 2 numbers.");
-			return;
+			return -1;
 		}
 
 		n1 = n2 = min = -1000000000; // lets equate to the minimum value of int
@@ -39,9 +44,12 @@ public class SecondHighest {
 				n2 = a[i];
 		}
 
-		if (n2 == min)
-			System.out.println("No second highest number in array.");
-		else
-			System.out.println("Second highest number"+ n2);
+		if (n2 == min) {
+			return -1;
+		}
+		else {
+			
+			return n2;
+		}
 	}
 }
