@@ -16,40 +16,41 @@ public class SecondHighest {
             a[i] = scan.nextInt();
         }
         scan.close();
-        int output = checkSecondHighest(a, length);
-        if(output == -1) {
+        String returnValue = checkSecondHighest(a, length);
+        if(returnValue == null) {
         	System.out.println("Invalid");
         } else {
-        	System.out.println("Second highest number"+ output);
+        	System.out.println("Second highest number"+ returnValue);
         }
 	}
 
-	public static int checkSecondHighest(int a[], int length) {
-		int n1, n2, min;
+	public static String checkSecondHighest(int a[], int length) {
+		int highestNumber, secondHighestNumber, minNumber;
 
 		if (length < 2) {
 			System.out.println("Array must have at least 2 numbers.");
-			return -1;
+			return null;
 		}
 
-		n1 = n2 = min = -1000000000; // lets equate to the minimum value of int
+		highestNumber = secondHighestNumber = minNumber = -1000000000; // lets equate to the minimum value of int
 
 		for (int i = 0; i < length; i++) {
 
-			if (a[i] > n1) {
-				n2 = n1;
-				n1 = a[i];
+			if (a[i] > highestNumber) {
+				secondHighestNumber = highestNumber;
+				highestNumber = a[i];
 			}
-			else if (a[i] > n2 && a[i] != n1)
-				n2 = a[i];
+			else if (a[i] > secondHighestNumber && a[i] != highestNumber)
+				secondHighestNumber = a[i];
 		}
 
-		if (n2 == min) {
-			return -1;
+		if (secondHighestNumber == minNumber) {
+			return null;
 		}
 		else {
 			
-			return n2;
+			String returnVal = Integer.toString(secondHighestNumber);
+			return returnVal;
 		}
 	}
 }
